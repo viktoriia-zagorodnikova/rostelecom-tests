@@ -1,69 +1,75 @@
-# Автотесты для Ростелеком ID (b2c.passport.rt.ru)
+Automated Tests for Rostelecom ID (b2c.passport.rt.ru)
 
-## Описание проекта
+Project Description
 
-Автоматизированные тесты для проверки функциональности страницы авторизации Ростелеком.
+Automated tests for verifying the functionality of the Rostelecom authorization page.
 
-### Что проверяется:
-- Открытие страницы авторизации
-- Форма входа по паролю (все 4 таба: Телефон, Почта, Логин, Лицевой счёт)
-- Форма входа по временному коду
-- Вход с неверными данными
-- Ссылки на регистрацию и восстановление пароля
-- Кнопки входа через соцсети
+What's covered:
 
-## Структура проекта
 
-```
+Opening the authorization page
+Password login form (all 4 tabs: Phone, Email, Login, Account Number)
+One-time code login form
+Login with invalid credentials
+Registration and password recovery links
+Social media login buttons
+
+
+Project Structure
+
 rostelecom_tests/
   pages/
-    base_page.py       - базовый класс страницы
-    auth_page.py       - класс страницы авторизации
-    register_page.py   - класс страницы регистрации
-    recovery_page.py   - класс страницы восстановления пароля
+    base_page.py       - base page class
+    auth_page.py        - authorization page class
+    register_page.py   - registration page class
+    recovery_page.py   - password recovery page class
   tests/
-    test_auth.py       - 20 автотестов
-  conftest.py          - настройка браузера
-  requirements.txt     - зависимости
-  README.md            - описание проекта
-```
+    test_auth.py        - 20 automated tests
+  conftest.py           - browser setup
+  requirements.txt      - dependencies
+  README.md             - project description
 
-## Установка и запуск
+Installation and Running
 
-### 1. Требования
-- Python 3.8+
-- Google Chrome
-- ChromeDriver (совместимой версии)
+1. Requirements
 
-### 2. Установка зависимостей
-```bash
+
+Python 3.8+
+Google Chrome
+ChromeDriver (matching version)
+
+
+2. Install Dependencies
+
 pip install -r requirements.txt
-```
 
-### 3. Настройка данных
-В файле `tests/test_auth.py` замените:
-```python
+3. Configure Test Data
+
+In tests/test_auth.py, replace:
+
 VALID_EMAIL = "your_email@gmail.com"
 VALID_PASSWORD = "YourPassword123"
-```
 
-### 4. Запуск тестов
-```bash
-# Все тесты
+4. Run Tests
+
+# All tests
 pytest tests/ -v
 
-# Конкретный тест
+# A specific test
 pytest tests/test_auth.py::test_tk001_auth_page_opens -v
 
-# С отчётом
+# With an HTML report
 pytest tests/ -v --html=report.html
-```
 
-## Инструменты
-- **Selenium WebDriver** — автоматизация браузера
-- **PyTest** — запуск тестов
-- **PageObject паттерн** — архитектура тестов
-- **SelectorsHub** — поиск локаторов
+Tools
 
-## Примечание
-Сайт доступен только с территории РФ. При тестировании из другой страны используйте VPN с российским сервером.
+
+Selenium WebDriver — browser automation
+PyTest — test runner
+Page Object pattern — test architecture
+SelectorsHub — locator discovery
+
+
+Note
+
+The site is only accessible from Russia. If testing from another country, use a VPN with a Russian server.
