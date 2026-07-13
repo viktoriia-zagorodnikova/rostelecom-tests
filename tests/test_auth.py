@@ -14,23 +14,24 @@ INVALID_PASSWORD = "wrongpassword123"
 
 
 def test_tk001_auth_page_opens(browser):
-    """ТК-001: Страница авторизации открывается корректно"""
+    """TC-001: The authorization page opens correctly"""
     page = AuthPage(browser)
     page.open()
     assert "b2c.passport.rt.ru" in page.get_current_url()
 
 
 def test_tk002_auth_form_title(browser):
-    """ТК-002: Заголовок формы авторизации отображается"""
+    """TC-002: The authorization form title is displayed"""
     page = AuthPage(browser)
     page.open()
     title = page.find_element(By.ID, "card-title")
     assert title.is_displayed()
+    # Checking a fragment of the real page text (site UI is in Russian)
     assert "вторизация" in title.text
 
 
 def test_tk003_tabs_present(browser):
-    """ТК-003: Все 4 таба авторизации присутствуют"""
+    """TC-003: All 4 authorization tabs are present"""
     page = AuthPage(browser)
     page.open()
     assert page.find_element(*AuthPage.TAB_PHONE).is_displayed()
@@ -40,7 +41,7 @@ def test_tk003_tabs_present(browser):
 
 
 def test_tk004_tab_phone_active_by_default(browser):
-    """ТК-004: Таб 'Телефон' активен по умолчанию"""
+    """TC-004: The 'Phone' tab is active by default"""
     page = AuthPage(browser)
     page.open()
     tab = page.find_element(*AuthPage.TAB_PHONE)
@@ -48,7 +49,7 @@ def test_tk004_tab_phone_active_by_default(browser):
 
 
 def test_tk005_tab_email_click(browser):
-    """ТК-005: Таб 'Почта' переключается при клике"""
+    """TC-005: The 'Email' tab switches on click"""
     page = AuthPage(browser)
     page.open()
     page.click_tab_email()
@@ -57,7 +58,7 @@ def test_tk005_tab_email_click(browser):
 
 
 def test_tk006_tab_login_click(browser):
-    """ТК-006: Таб 'Логин' переключается при клике"""
+    """TC-006: The 'Login' tab switches on click"""
     page = AuthPage(browser)
     page.open()
     page.click_tab_login()
@@ -66,7 +67,7 @@ def test_tk006_tab_login_click(browser):
 
 
 def test_tk007_tab_ls_click(browser):
-    """ТК-007: Таб 'Лицевой счёт' переключается при клике"""
+    """TC-007: The 'Account Number' tab switches on click"""
     page = AuthPage(browser)
     page.open()
     page.click_tab_ls()
@@ -75,7 +76,7 @@ def test_tk007_tab_ls_click(browser):
 
 
 def test_tk008_username_field_present(browser):
-    """ТК-008: Поле ввода логина присутствует"""
+    """TC-008: The username input field is present"""
     page = AuthPage(browser)
     page.open()
     field = page.find_element(*AuthPage.FIELD_USERNAME)
@@ -83,7 +84,7 @@ def test_tk008_username_field_present(browser):
 
 
 def test_tk009_password_field_present(browser):
-    """ТК-009: Поле ввода пароля присутствует"""
+    """TC-009: The password input field is present"""
     page = AuthPage(browser)
     page.open()
     field = page.find_element(*AuthPage.FIELD_PASSWORD)
@@ -91,7 +92,7 @@ def test_tk009_password_field_present(browser):
 
 
 def test_tk010_login_button_present(browser):
-    """ТК-010: Кнопка 'Войти' присутствует"""
+    """TC-010: The 'Login' button is present"""
     page = AuthPage(browser)
     page.open()
     btn = page.find_element(*AuthPage.BTN_LOGIN)
@@ -99,7 +100,7 @@ def test_tk010_login_button_present(browser):
 
 
 def test_tk011_register_link_present(browser):
-    """ТК-011: Ссылка 'Зарегистрироваться' присутствует"""
+    """TC-011: The 'Sign up' link is present"""
     page = AuthPage(browser)
     page.open()
     link = page.find_element(*AuthPage.LINK_REGISTER)
@@ -107,7 +108,7 @@ def test_tk011_register_link_present(browser):
 
 
 def test_tk012_forgot_password_link_present(browser):
-    """ТК-012: Ссылка 'Забыл пароль' присутствует"""
+    """TC-012: The 'Forgot password' link is present"""
     page = AuthPage(browser)
     page.open()
     link = page.find_element(*AuthPage.LINK_FORGOT)
@@ -115,7 +116,7 @@ def test_tk012_forgot_password_link_present(browser):
 
 
 def test_tk013_register_link_redirects(browser):
-    """ТК-013: Клик на 'Зарегистрироваться' открывает форму регистрации"""
+    """TC-013: Clicking 'Sign up' opens the registration form"""
     page = AuthPage(browser)
     page.open()
     page.click_register()
@@ -124,7 +125,7 @@ def test_tk013_register_link_redirects(browser):
 
 
 def test_tk014_forgot_password_redirects(browser):
-    """ТК-014: Клик на 'Забыл пароль' открывает форму восстановления"""
+    """TC-014: Clicking 'Forgot password' opens the recovery form"""
     page = AuthPage(browser)
     page.open()
     page.click_forgot_password()
@@ -135,7 +136,7 @@ def test_tk014_forgot_password_redirects(browser):
 
 
 def test_tk015_wrong_password_shows_error(browser):
-    """ТК-015: Вход с неверным паролем показывает ошибку"""
+    """TC-015: Logging in with an incorrect password shows an error"""
     page = AuthPage(browser)
     page.open()
     page.click_tab_email()
@@ -147,7 +148,7 @@ def test_tk015_wrong_password_shows_error(browser):
 
 
 def test_tk016_username_field_accepts_input(browser):
-    """ТК-016: Поле username принимает текст"""
+    """TC-016: The username field accepts text input"""
     page = AuthPage(browser)
     page.open()
     page.enter_username("test@example.com")
@@ -156,7 +157,7 @@ def test_tk016_username_field_accepts_input(browser):
 
 
 def test_tk017_social_buttons_present(browser):
-    """ТК-017: Кнопки входа через соцсети присутствуют"""
+    """TC-017: Social login buttons are present"""
     page = AuthPage(browser)
     page.open()
     vk = page.find_element(*AuthPage.SOCIAL_VK)
@@ -166,7 +167,7 @@ def test_tk017_social_buttons_present(browser):
 
 
 def test_tk018_tab_email_shows_email_field(browser):
-    """ТК-018: При выборе таба 'Почта' поле меняет placeholder"""
+    """TC-018: Selecting the 'Email' tab updates the field placeholder"""
     page = AuthPage(browser)
     page.open()
     page.click_tab_email()
@@ -176,7 +177,7 @@ def test_tk018_tab_email_shows_email_field(browser):
 
 
 def test_tk019_successful_login(browser):
-    """ТК-019: Успешный вход по email и паролю"""
+    """TC-019: Successful login with email and password"""
     page = AuthPage(browser)
     page.open()
     page.click_tab_email()
@@ -188,7 +189,7 @@ def test_tk019_successful_login(browser):
 
 
 def test_tk020_tab_phone_shows_phone_field(browser):
-    """ТК-020: При выборе таба 'Телефон' отображается поле телефона"""
+    """TC-020: Selecting the 'Phone' tab displays the phone field"""
     page = AuthPage(browser)
     page.open()
     page.click_tab_phone()
