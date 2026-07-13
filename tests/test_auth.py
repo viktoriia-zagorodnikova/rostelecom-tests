@@ -1,11 +1,15 @@
+import os
 import pytest
+from dotenv import load_dotenv
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from pages.auth_page import AuthPage
 
-VALID_EMAIL = "doorgaliyo@gmail.com"
-VALID_PASSWORD = "-ZQVigas5YYiH!9"
+load_dotenv()
+
+VALID_EMAIL = os.environ.get("VALID_EMAIL")
+VALID_PASSWORD = os.environ.get("VALID_PASSWORD")
 INVALID_PASSWORD = "wrongpassword123"
 
 
